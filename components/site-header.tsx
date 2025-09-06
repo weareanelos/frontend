@@ -31,14 +31,19 @@ export function SiteHeader() {
         <div className="flex-1" />
         <div className="ml-auto flex items-center gap-6">
           <div className="flex items-center gap-2">
-            <Button variant="outline" size="icon" asChild>
+            <Button
+              variant="outline"
+              size="icon"
+              asChild
+              className="active:scale-95 active:shadow-[0_1px_0_#036147] transition-all duration-10"
+            >
               <a
                 href="https://discord.com/invite/8NWR3NfHzx?fbclid=PAZXh0bgNhZW0CMTEAAadqmmJcLQecHJV3pcmbwuS1ddKAfhlBxKBv1SDjWQ8LKewJ6MOLybBUaFVzmA_aem_9grRlGYlIrWoLUMZw8PiuA"
                 rel="noopener noreferrer"
                 target="_blank"
                 className="dark:text-foreground"
               >
-                <IconBrandDiscord stroke={2} />
+              <IconBrandDiscord stroke={2} />
               </a>
             </Button>
             <ThemeButton />

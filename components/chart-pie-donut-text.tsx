@@ -52,11 +52,11 @@ export function ChartPieDonutText() {
   }, []);
 
   return (
-    <CardContent className="flex flex-row gap-8 pb-0">
-      <section className="flex flex-1 pb-0 w-1/2">
+    <CardContent className="flex flex-col md:flex-row gap-8 pb-0">
+      <section className="flex flex-1 pb-0 w-full md:w-1/2">
         <ChartContainer
           config={chartConfig}
-          className="aspect-square max-h-[250px]"
+          className="aspect-square max-h-[250px] w-full md:w-auto"
         >
           <PieChart>
             <ChartTooltip
@@ -103,7 +103,7 @@ export function ChartPieDonutText() {
           </PieChart>
         </ChartContainer>
       </section>
-      <section className="w-[49%]">
+      <section className="w-full md:w-[49%]">
         {chartData.map((data) => {
           const chartInfo =
             chartConfig[data.browser as keyof typeof chartConfig];

@@ -93,7 +93,7 @@ export default function ProfileLayout({
         <Separator className="mt-4" />
         <ul
           className="flex mx-9 gap-6 text-[#717579] dark:text-[#c8c8c8] font-medium 
-          overflow-x-auto scrollbar-  whitespace-nowrap"
+          overflow-x-auto scrollbar-none  whitespace-nowrap"
         >
           <li
             className="option hover:border-b-2 border-[#036147] pb-3 active cursor-pointer"

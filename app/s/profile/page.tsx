@@ -19,6 +19,34 @@ const curriculums = [
     id: 3,
     name: "Currículo 3",
   },
+  {
+    id: 4,
+    name: "Currículo 4",
+  },
+  {
+    id: 5,
+    name: "Currículo 5",
+  },
+  {
+    id: 6,
+    name: "Currículo 6",
+  },
+  {
+    id: 7,
+    name: "Currículo 7",
+  },
+  {
+    id: 8,
+    name: "Currículo 8",
+  },
+  {
+    id: 9,
+    name: "Currículo 9",
+  },
+  {
+    id: 10,
+    name: "Currículo 10",
+  },
 ];
 
 export default function OverviewPage() {
@@ -91,7 +119,7 @@ export default function OverviewPage() {
           </Button>
         </CardHeader>
         <Separator />
-        <CardContent className="flex flex-col p-0 gap-4 w-full">
+        <CardContent className="overflow-y-auto whitespace-nowrap flex flex-col p-0 gap-4 w-full max-h-[320px] lg:max-h-full">
           {curriculums.map((curriculum) => (
             <Card
               className="flex-row justify-between items-center p-2"
@@ -109,7 +137,7 @@ export default function OverviewPage() {
           ))}
         </CardContent>
       </Card>
-      <Card className="p-[4px] md:p-4 w-full lg:w-auto">
+      <Card className="col-span-2 lg:col-span-1 p-[4px] py-4 md:p-4 w-full lg:w-auto">
         <CardHeader className="items-center pb-0">
           <CardTitle className="font-semibold text-xl">
             Média de Aprovação
