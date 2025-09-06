@@ -3,8 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { useLayoutData } from "./layout";
 import { ChartPieDonutText } from "@/components/chart-pie-donut-text";
+import useLayoutData from "@/hooks/useProfileLayoutData";
 
 const curriculums = [
   {
@@ -78,7 +78,7 @@ export default function OverviewPage() {
           </div>
         </CardContent>
       </Card>
-      <Card className="col-span-2 p-[4px] md:p-4 lg:col-span-1 lg:row-span-2">
+      <Card className="col-span-2 p-[4px] py-4 md:p-4 lg:col-span-1 lg:row-span-2">
         <CardHeader className="flex justify-between items-center">
           <CardTitle className="font-semibold text-xl">
             Currículos Criados

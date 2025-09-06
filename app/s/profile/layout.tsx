@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, ReactNode } from "react";
+import { ReactNode } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
 import Banner from "@/public/profileBanner.png";
@@ -13,34 +13,7 @@ import {
   IconMapPinFilled,
   IconUserFilled,
 } from "@tabler/icons-react";
-
-type LayoutContextType = {
-  user: {
-    name: string;
-    email: string;
-    job: string;
-    address: string;
-    phone: string;
-    country: string;
-  };
-};
-
-const LayoutContext = createContext<LayoutContextType>({
-  user: {
-    name: "",
-    email: "",
-    job: "",
-    address: "",
-    phone: "",
-    country: "",
-  },
-});
-
-export function useLayoutData() {
-  const context = useContext(LayoutContext);
-
-  return context;
-}
+import { LayoutContext } from "@/hooks/useProfileLayoutData";
 
 const user = {
   name: "Anelos Pika das Galaxias",
