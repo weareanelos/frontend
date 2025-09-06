@@ -1,0 +1,5 @@
+.active {
+  border-bottom: 2px solid #036147;
+  padding-bottom: 0.75rem;
+  font-weight: 600;
+}
