@@ -19,26 +19,33 @@ jobs:
       - name: Build
         run: npm run build 
 
+      # Novo passo: listar pastas e arquivos gerados
+      - name: Listar arquivos e pastas do build
+        run: |
+          echo "Arquivos no root do projeto:"
+          ls -la
+          echo ""
+          echo "Conteúdo recursivo do projeto:"
+          ls -R
+          echo ""
+          echo "Verificando out/:"
+          ls -la out || echo "out/ não existe ainda"
+
       - name: Deploy para main
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
           git fetch origin main
           git checkout main || git checkout -b main
-
           find . -mindepth 1 -not -name '.git' -exec rm -rf {} + || true
-
-
           if [ ! -d "out" ]; then
             echo "Pasta out/ não encontrada. O build pode ter falhado."
             exit 1
           fi
           
-          cp -r out/*
+          cp -r out/* .
           
           echo "node_modules" > .gitignore
-
           git add .
           git commit -m "Deploy automático (Next.js export da prod)"
           git push origin main --force
