@@ -12,25 +12,30 @@ jobs:
     steps:
       - name: Checkout código
         uses: actions/checkout@v4
+        with:
+          ref: prod
 
       - name: Instalar dependências
-        run: npm install
+        run: npm ci
 
       - name: Build
-        run: npm run build 
+        run: npm run build
 
       - name: Deploy para main
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          cp -r out ../temp_out
+
           git fetch origin main
           git checkout main || git checkout -b main
+
           find . -mindepth 1 -not -name '.git' -exec rm -rf {} + || true
-          cp -r ../temp_out/* .
-          rm -rf ../temp_out
+
+          cp -r ../prod_temp/* .
+          cp -r out/* .
+
           echo "node_modules" > .gitignore
+
           git add .
-          git commit -m "Deploy automático (Next.js export da prod)"
+          git commit -m "Deploy automático (prod + Next.js build)"
           git push origin main --force
-    
