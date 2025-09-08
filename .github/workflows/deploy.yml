@@ -17,7 +17,7 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build
+        run: npm run build 
 
       - name: Deploy para main
         run: |
@@ -27,8 +27,17 @@ jobs:
           git fetch origin main
           git checkout main || git checkout -b main
 
-          git rm -rf .
-          cp -r out/* .
+          find . -mindepth 1 -not -name '.git' -exec rm -rf {} +
+
+          if [ -d "out" ]; then
+            cp -r out/* .
+          else
+            echo "Pasta out/ não encontrada. O build pode ter falhado."
+            exit 1
+          fi
+
+          echo "node_modules" > .gitignore
+
           git add .
-          git commit -m "Deploy automático (Next.js build da prod)"
+          git commit -m "Deploy automático (Next.js export da prod)"
           git push origin main --force
