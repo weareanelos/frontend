@@ -1,4 +1,4 @@
-name: Build and Deploy to Main
+name: Build and Add Next.js Build to Prod
 
 on:
   push:
@@ -12,35 +12,29 @@ jobs:
     steps:
       - name: Checkout prod
         uses: actions/checkout@v4
-        with:
-          ref: prod
 
       - name: Instalar dependências
         run: npm ci
 
-      - name: Build
+      - name: Build Next.js
         run: npm run build
 
-      - name: Preparar deploy
+      - name: Verificar build
         run: |
-          mkdir temp_deploy
-          cp -r * temp_deploy/
+          echo "Arquivos no root:"
+          ls -la
+          echo "Conteúdo recursivo:"
+          ls -R
+          echo "Verificando out/:"
+          ls -la out || echo "out/ não existe"
 
-      - name: Deploy para main
+      - name: Commit e push build
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          git fetch origin main
-          git checkout main || git checkout -b main
+          git add out
 
-          find . -mindepth 1 -not -name '.git' -exec rm -rf {} + || true
+          git diff --cached --quiet || git commit -m "Adicionar/Atualizar build Next.js"
 
-          cp -r temp_deploy/* .
-          rm -rf temp_deploy
-
-          echo "node_modules" > .gitignore
-
-          git add .
-          git commit -m "Deploy automático (prod + Next.js build)"
-          git push origin main --force
+          git push origin prod
