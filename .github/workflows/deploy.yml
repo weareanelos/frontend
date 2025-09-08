@@ -19,13 +19,13 @@ jobs:
       - name: Build Next.js
         run: npm run build
 
-      - name: Commit e push build
+      - name: Commit e push build completo
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add -f out
+          git add -f .next public package.json package-lock.json
 
-          git diff --cached --quiet || git commit -m "Adicionar/Atualizar build Next.js"
+          git diff --cached --quiet || git commit -m "Adicionar/Atualizar build Next.js SSR"
 
           git push origin prod
